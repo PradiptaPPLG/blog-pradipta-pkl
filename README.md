@@ -1,58 +1,80 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# TechPulse — Modern Laravel Blog Platform
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+> **Proyek Tugas Hari Ke-1 Praktik Kerja Lapangan (PKL)**  
+> **Pengembang:** Pradipta Endra Maulana (XI PPLG - SMKN 1 Ciamis)  
+> **Teknologi:** Laravel 12, MySQL, Tailwind CSS, Blade Components, Laravel Breeze
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🌟 Tentang Proyek
+**TechPulse** adalah sistem manajemen konten (CMS) dan platform blog publikasi teknologi yang dirancang dengan standar rekayasa perangkat lunak modern. Dibangun dengan memprioritaskan estetika visual yang matang, hirarki tipografi yang bersih, serta arsitektur kode modular yang bebas dari pola *spaghetti code* atau *AI slop*.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🚀 Fitur Utama
 
-## Learning Laravel
+### 1. Halaman Publik (Pengunjung)
+* **Beranda Publik & Pagination:** Menampilkan feed artikel terkini dengan tata letak majalah digital yang nyaman dibaca.
+* **Filter Dinamis:** Pengelompokan artikel berdasarkan kategori dan topik tag dengan query string yang bersih.
+* **Fitur Pencarian:** Cari artikel berdasarkan kata kunci judul maupun isi konten secara instan.
+* **Halaman Baca Artikel (Single Post):** Dilengkapi kalkulasi otomatis estimasi waktu membaca (*reading time*), indikator views counter, breadcrumb navigasi, dan card profil penulis.
+* **Sistem Diskusi / Komentar:** Pembaca (baik pengunjung tamu maupun member login) dapat meninggalkan komentar dan tanggapan secara langsung.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 2. Panel CMS & Administrasi (Admin / Author)
+* **Dashboard Statistik:** Ringkasan jumlah artikel, status publikasi (*Published* vs *Draft*), akumulasi views, total kategori, dan moderasi komentar.
+* **Manajemen Artikel (CRUD Lengkap):**
+  * Auto-generate *slug* unik ramah SEO dari judul artikel.
+  * Validasi dan upload gambar thumbnail ke storage publik.
+  * Dukungan status publikasi (*Draft* atau *Published*).
+  * Relasi banyak-ke-banyak (*Many-to-Many*) dengan tag topik.
+* **Manajemen Kategori:** Tambah dan kelola kategori artikel. Proteksi penghapusan otomatis jika kategori masih memiliki artikel terkait.
+* **Moderasi Komentar:** Kemampuan menyetujui, menyembunyikan, atau menghapus komentar pengunjung.
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+## 🏗️ Arsitektur & Best Practices Kode
+* **Pencegahan N+1 Query:** Mengimplementasikan **Eager Loading** (`with(['user', 'category', 'tags'])`) pada setiap pemanggilan query relasional.
+* **Modular Blade Components:** Memisahkan layout publik (`<x-blog-layout>`) dan layout admin (`<x-app-layout>`) secara terstruktur (*DRY - Don't Repeat Yourself*).
+* **Database Relasional & Foreign Key:** Seluruh relasi tabel (`users`, `categories`, `posts`, `tags`, `post_tag`, `comments`) terikat integritas referensial dengan `cascadeOnDelete()` dan `nullOnDelete()`.
 
-## Agentic Development
+---
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## 🔐 Kredensial Akun Demo (Testing)
+
+Database sudah dilengkapi seeder data realistis dan akun pengujian:
+
+| Peran (Role) | Email | Password |
+|---|---|---|
+| **Administrator** | `admin@techpulse.id` | `password` |
+| **Penulis (Author)** | `sarah@techpulse.id` | `password` |
+
+---
+
+## ⚙️ Panduan Menjalankan Aplikasi
+
+Pastikan XAMPP (Apache & MySQL) sudah aktif di komputer Anda:
 
 ```bash
-composer require laravel/boost --dev
+# 1. Pindah ke direktori project
+cd blog-pkl
 
-php artisan boost:install
+# 2. Instalasi dependensi PHP & Node.js (jika baru di-clone)
+composer install
+npm install
+
+# 3. Hubungkan Storage Link untuk thumbnail gambar
+php artisan storage:link
+
+# 4. Migrasi database dan isi data awal (Seeder)
+php artisan migrate:fresh --seed
+
+# 5. Kompilasi aset CSS / JS
+npm run build
+
+# 6. Jalankan server lokal Laravel
+php artisan serve
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Aplikasi dapat langsung diakses di browser melalui:  
+👉 **Web Publik:** `http://localhost:8000`  
+👉 **Login CMS:** `http://localhost:8000/login`

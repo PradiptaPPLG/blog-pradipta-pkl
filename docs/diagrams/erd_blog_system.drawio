@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" type="device">
+  <diagram id="erd_diagram" name="ERD - Laravel Blog System">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="tbl_users" value="&lt;b&gt;USERS&lt;/b&gt;" style="shape=swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=28;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;rounded=1;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="80" width="250" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="tbl_users_content" value="+ id: BIGINT UNSIGNED [PK]&lt;br&gt;  name: VARCHAR(255)&lt;br&gt;  email: VARCHAR(255) [UNIQUE]&lt;br&gt;  password: VARCHAR(255)&lt;br&gt;  role: ENUM('admin','author')&lt;br&gt;  avatar: VARCHAR(255) NULL&lt;br&gt;  created_at: TIMESTAMP&lt;br&gt;  updated_at: TIMESTAMP" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=6;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Consolas,monospace;fontSize=11;" vertex="1" parent="tbl_users">
+          <mxGeometry y="28" width="250" height="212" as="geometry" />
+        </mxCell>
+        <mxCell id="tbl_posts" value="&lt;b&gt;POSTS&lt;/b&gt;" style="shape=swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=28;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;rounded=1;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="420" y="80" width="270" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="tbl_posts_content" value="+ id: BIGINT UNSIGNED [PK]&lt;br&gt;# user_id: BIGINT UNSIGNED [FK]&lt;br&gt;# category_id: BIGINT UNSIGNED [FK]&lt;br&gt;  title: VARCHAR(255)&lt;br&gt;  slug: VARCHAR(255) [UNIQUE]&lt;br&gt;  thumbnail: VARCHAR(255) NULL&lt;br&gt;  body: LONGTEXT&lt;br&gt;  status: ENUM('draft','published')&lt;br&gt;  views_count: INT UNSIGNED = 0&lt;br&gt;  published_at: TIMESTAMP NULL&lt;br&gt;  created_at: TIMESTAMP&lt;br&gt;  updated_at: TIMESTAMP" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=6;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Consolas,monospace;fontSize=11;" vertex="1" parent="tbl_posts">
+          <mxGeometry y="28" width="270" height="252" as="geometry" />
+        </mxCell>
+        <mxCell id="tbl_categories" value="&lt;b&gt;CATEGORIES&lt;/b&gt;" style="shape=swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=28;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;rounded=1;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="420" y="450" width="270" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="tbl_categories_content" value="+ id: BIGINT UNSIGNED [PK]&lt;br&gt;  name: VARCHAR(100)&lt;br&gt;  slug: VARCHAR(120) [UNIQUE]&lt;br&gt;  description: TEXT NULL&lt;br&gt;  created_at: TIMESTAMP&lt;br&gt;  updated_at: TIMESTAMP" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=6;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Consolas,monospace;fontSize=11;" vertex="1" parent="tbl_categories">
+          <mxGeometry y="28" width="270" height="142" as="geometry" />
+        </mxCell>
+        <mxCell id="tbl_tags" value="&lt;b&gt;TAGS&lt;/b&gt;" style="shape=swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=28;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;rounded=1;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="790" y="450" width="240" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="tbl_tags_content" value="+ id: BIGINT UNSIGNED [PK]&lt;br&gt;  name: VARCHAR(50)&lt;br&gt;  slug: VARCHAR(60) [UNIQUE]&lt;br&gt;  created_at: TIMESTAMP&lt;br&gt;  updated_at: TIMESTAMP" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=6;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Consolas,monospace;fontSize=11;" vertex="1" parent="tbl_tags">
+          <mxGeometry y="28" width="240" height="122" as="geometry" />
+        </mxCell>
+        <mxCell id="tbl_post_tag" value="&lt;b&gt;POST_TAG (PIVOT)&lt;/b&gt;" style="shape=swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=28;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;rounded=1;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="790" y="150" width="240" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="tbl_post_tag_content" value="+ id: BIGINT UNSIGNED [PK]&lt;br&gt;# post_id: BIGINT UNSIGNED [FK]&lt;br&gt;# tag_id: BIGINT UNSIGNED [FK]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=6;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Consolas,monospace;fontSize=11;" vertex="1" parent="tbl_post_tag">
+          <mxGeometry y="28" width="240" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="tbl_comments" value="&lt;b&gt;COMMENTS&lt;/b&gt;" style="shape=swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=28;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;rounded=1;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="430" width="260" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="tbl_comments_content" value="+ id: BIGINT UNSIGNED [PK]&lt;br&gt;# post_id: BIGINT UNSIGNED [FK]&lt;br&gt;# user_id: BIGINT UNSIGNED NULL [FK]&lt;br&gt;  guest_name: VARCHAR(100) NULL&lt;br&gt;  guest_email: VARCHAR(150) NULL&lt;br&gt;  comment: TEXT&lt;br&gt;  is_approved: BOOLEAN = 1&lt;br&gt;  created_at: TIMESTAMP&lt;br&gt;  updated_at: TIMESTAMP" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=6;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Consolas,monospace;fontSize=11;" vertex="1" parent="tbl_comments">
+          <mxGeometry y="28" width="260" height="192" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_user_posts" value="1 : N (writes)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#4A5568;strokeWidth=2;fontSize=11;endArrow=ERmany;startArrow=ERone;" edge="1" parent="1" source="tbl_users" target="tbl_posts">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_cat_posts" value="1 : N (categorizes)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#4A5568;strokeWidth=2;fontSize=11;endArrow=ERmany;startArrow=ERone;" edge="1" parent="1" source="tbl_categories" target="tbl_posts">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_posts_pivot" value="1 : N" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#4A5568;strokeWidth=2;fontSize=11;endArrow=ERmany;startArrow=ERone;" edge="1" parent="1" source="tbl_posts" target="tbl_post_tag">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_tags_pivot" value="1 : N" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#4A5568;strokeWidth=2;fontSize=11;endArrow=ERmany;startArrow=ERone;" edge="1" parent="1" source="tbl_tags" target="tbl_post_tag">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_posts_comm" value="1 : N (receives)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#4A5568;strokeWidth=2;fontSize=11;endArrow=ERmany;startArrow=ERone;" edge="1" parent="1" source="tbl_posts" target="tbl_comments">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_user_comm" value="0..1 : N" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#4A5568;strokeWidth=2;fontSize=11;endArrow=ERmany;startArrow=ERone;" edge="1" parent="1" source="tbl_users" target="tbl_comments">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
