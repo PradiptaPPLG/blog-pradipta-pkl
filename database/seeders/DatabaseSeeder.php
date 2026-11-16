@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
             'avatar' => 'images/pp2.jpg',
         ]);
 
-        // 2. Buat Kategori
+        // 2. Buat Kategori (Topik Beragam & Lengkap)
         $catWeb = Category::create([
             'name' => 'Web Development',
             'slug' => 'web-development',
@@ -59,6 +59,30 @@ class DatabaseSeeder extends Seeder
             'description' => 'Seni merancang antarmuka pengguna yang bersih, responsif, intuitif, dan nyaman.',
         ]);
 
+        $catDevOps = Category::create([
+            'name' => 'DevOps & Deployment',
+            'slug' => 'devops-deployment',
+            'description' => 'CI/CD pipeline, konfigurasi serverless Vercel, Docker, dan deployment produksi.',
+        ]);
+
+        $catCyber = Category::create([
+            'name' => 'Cyber Security',
+            'slug' => 'cyber-security',
+            'description' => 'Keamanan aplikasi web, autentikasi aman, proteksi OWASP, dan enkripsi data.',
+        ]);
+
+        $catMobile = Category::create([
+            'name' => 'Mobile & PWA',
+            'slug' => 'mobile-pwa',
+            'description' => 'Pengembangan Progressive Web Apps dan integrasi mobile responsif modern.',
+        ]);
+
+        $catAI = Category::create([
+            'name' => 'AI & Tools Coding',
+            'slug' => 'ai-tools-coding',
+            'description' => 'Pemanfaatan AI assistant untuk riset, refactoring, dan efisiensi produktivitas developer.',
+        ]);
+
         // 3. Buat Tag
         $tagLaravel = Tag::create(['name' => 'Laravel', 'slug' => 'laravel']);
         $tagPHP = Tag::create(['name' => 'PHP', 'slug' => 'php']);
@@ -66,6 +90,9 @@ class DatabaseSeeder extends Seeder
         $tagCleanCode = Tag::create(['name' => 'Clean Code', 'slug' => 'clean-code']);
         $tagTailwind = Tag::create(['name' => 'Tailwind CSS', 'slug' => 'tailwind-css']);
         $tagPKL = Tag::create(['name' => 'Tips PKL', 'slug' => 'tips-pkl']);
+        $tagVercel = Tag::create(['name' => 'Vercel', 'slug' => 'vercel']);
+        $tagSecurity = Tag::create(['name' => 'Web Security', 'slug' => 'web-security']);
+        $tagGit = Tag::create(['name' => 'Git & GitHub', 'slug' => 'git-github']);
 
         // 4. Buat Artikel Realistis & Berkualitas Tinggi
         $postsData = [
@@ -159,6 +186,77 @@ Dengan eager loading, Laravel hanya menjalankan 2 query cepat secara efisien di 
 3. **Warna Netral Berkualitas:** Gunakan palet abu-abu netral (seperti Zinc atau Slate di Tailwind) untuk latar dan teks sekunder, serta satu warna aksen yang konsisten.
 
 Ketika estetika visual berpadu dengan performa halaman yang cepat, pengguna akan betah berlama-lama membaca artikel di web kita.',
+            ],
+            [
+                'user_id' => $admin->id,
+                'category_id' => $catDevOps->id,
+                'title' => 'Cara Deploy Laravel 12 ke Vercel Serverless Menggunakan Runtime Modern',
+                'slug' => 'cara-deploy-laravel-12-ke-vercel-serverless',
+                'thumbnail' => 'images/thumbnails/thumb_laravel.jpg',
+                'status' => 'published',
+                'views_count' => 312,
+                'published_at' => now()->subHours(3),
+                'tags' => [$tagVercel->id, $tagLaravel->id],
+                'body' => 'Deploy Laravel ke platform serverless seperti Vercel sering dianggap rumit karena perbedaan arsitektur antara server konvensional (Apache/Nginx) dengan arsitektur stateless cloud.
+
+### 1. Struktur Entry Point api/index.php
+Vercel membutuhkan jembatan untuk mengeksekusi request HTTP ke kernel Laravel:
+```php
+require __DIR__ . \'/../public/index.php\';
+```
+
+### 2. Runtime vercel-php Modern
+Pastikan menggunakan runtime yang mendukung fitur PHP 8.4 terbaru seperti Property Hooks agar dependency Symfony dan Laravel 12 tidak mengalami Parse Error saat kompilasi lambda.',
+            ],
+            [
+                'user_id' => $author->id,
+                'category_id' => $catCyber->id,
+                'title' => '5 Celah Keamanan Web Paling Umum dan Cara Mencegahnya di Laravel',
+                'slug' => 'celah-keamanan-web-dan-pencegahan-laravel',
+                'thumbnail' => 'images/thumbnails/thumb_nplus1.jpg',
+                'status' => 'published',
+                'views_count' => 205,
+                'published_at' => now()->subHours(2),
+                'tags' => [$tagSecurity->id, $tagLaravel->id, $tagCleanCode->id],
+                'body' => 'Keamanan aplikasi web bukan sekadar fitur tambahan, melainkan pondasi utama setiap sistem perangkat lunak yang layak produksi.
+
+### 1. Cross-Site Scripting (XSS)
+Laravel secara bawaan menggunakan Blade template syntax `{{ $variable }}` yang otomatis memanggil `htmlspecialchars()` untuk membersihkan script berbahaya.
+
+### 2. SQL Injection
+Gunakan selalu Eloquent ORM atau parameter binding PDO daripada menulis query mentah dengan konkatenasi string manual.',
+            ],
+            [
+                'user_id' => $admin->id,
+                'category_id' => $catMobile->id,
+                'title' => 'Membangun Web Responsif dengan Tailwind CSS: Mobile-First Strategy',
+                'slug' => 'membangun-web-responsif-tailwind-mobile-first',
+                'thumbnail' => 'images/thumbnails/thumb_uiux.jpg',
+                'status' => 'published',
+                'views_count' => 164,
+                'published_at' => now()->subHour(),
+                'tags' => [$tagTailwind->id, $tagCleanCode->id],
+                'body' => 'Lebih dari 70% pengunjung website membaca konten melalui layar smartphone. Oleh karena itu, pendekatan **Mobile-First** bukan lagi pilihan, melainkan keharusan standar industri.
+
+### Konsep Breakpoint di Tailwind
+Tailwind menerapkan konsep mobile-first: class tanpa prefix (seperti `p-4 text-sm`) berlaku untuk layar terkecil HP, sedangkan prefix seperti `sm:`, `md:`, dan `lg:` hanya diterapkan saat ukuran layar membesar.',
+            ],
+            [
+                'user_id' => $admin->id,
+                'category_id' => $catAI->id,
+                'title' => 'Pemanfaatan AI Coding Assistant untuk Riset dan Refactoring Tanpa Kehilangan Esensi Belajar',
+                'slug' => 'pemanfaatan-ai-coding-assistant-untuk-developer-muda',
+                'thumbnail' => 'images/thumbnails/thumb_pkl.jpg',
+                'status' => 'published',
+                'views_count' => 248,
+                'published_at' => now()->subMinutes(30),
+                'tags' => [$tagCleanCode->id, $tagPKL->id],
+                'body' => 'Kecerdasan Buatan (AI) telah mengubah cara developer menulis kode. Namun, bagi siswa SMK dan junior programmer, AI harus diposisikan sebagai partner diskusi dan mentor virtual, bukan tombol pintas copy-paste tanpa pemahaman.
+
+### Cara Efektif Menggunakan AI:
+1. Minta AI menjelaskan alur kerja dari sebuah potongan kode yang belum dimengerti.
+2. Gunakan untuk mereview celah keamanan dan potensi bottleneck query database.
+3. Selalu uji dan verifikasi manual setiap logika kode yang dihasilkan.',
             ],
             [
                 'user_id' => $admin->id,
