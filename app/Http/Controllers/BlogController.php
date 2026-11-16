@@ -26,8 +26,8 @@ class BlogController extends Controller
             ->withQueryString();
 
         // Mengambil kategori beserta jumlah artikel published
-        $categories = Category::withCount('publishedPosts')
-            ->having('published_posts_count', '>', 0)
+        $categories = Category::has('publishedPosts')
+            ->withCount('publishedPosts')
             ->orderBy('name')
             ->get();
 
