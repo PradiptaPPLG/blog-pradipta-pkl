@@ -151,7 +151,7 @@
                 <div class="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 shadow-sm">
                     <div class="flex items-center gap-3.5 mb-4">
                         <img src="{{ asset('images/ProfilePortifolioProfessional.jpg') }}" alt="Pradipta Endra Maulana" 
-                             class="w-14 h-14 rounded-2xl object-cover object-top border-2 border-indigo-500 shadow-md">
+                             class="w-14 h-14 rounded-full object-cover object-top border-2 border-indigo-500 shadow-md shrink-0">
                         <div>
                             <h3 class="font-bold text-sm text-zinc-900 dark:text-zinc-100">Pradipta Endra Maulana</h3>
                             <p class="text-xs text-zinc-500">Siswa XI PPLG • SMKN 1 Ciamis</p>

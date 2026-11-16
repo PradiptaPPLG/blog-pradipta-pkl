@@ -40,7 +40,7 @@
             <div class="mt-6 pt-6 border-t border-zinc-200 dark:border-zinc-800 flex items-center justify-between">
                 <div class="flex items-center gap-3">
                     <img src="{{ $post->user->avatar_url }}" alt="{{ $post->user->name }}" 
-                         class="w-11 h-11 rounded-2xl object-cover object-top border-2 border-indigo-500 shadow-sm">
+                         class="w-11 h-11 rounded-full object-cover object-top border-2 border-indigo-500 shadow-sm">
                     <div>
                         <div class="font-bold text-sm text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
                             <span>{{ $post->user->name }}</span>
@@ -90,7 +90,7 @@
         <!-- Author Profile Box -->
         <div class="my-10 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-100/70 dark:bg-zinc-900/60 flex items-start gap-4">
             <img src="{{ $post->user->avatar_url }}" alt="{{ $post->user->name }}" 
-                 class="w-14 h-14 rounded-2xl object-cover object-top border-2 border-indigo-500 shrink-0 shadow-md">
+                 class="w-14 h-14 rounded-full object-cover object-top border-2 border-indigo-500 shrink-0 shadow-md">
             <div>
                 <h3 class="font-bold text-sm text-zinc-900 dark:text-zinc-100">Ditulis oleh {{ $post->user->name }}</h3>
                 <p class="mt-1 text-xs text-zinc-500 leading-relaxed">
