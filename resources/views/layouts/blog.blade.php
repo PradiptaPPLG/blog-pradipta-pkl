@@ -49,13 +49,13 @@
 <body class="bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 min-h-screen flex flex-col antialiased selection:bg-indigo-500 selection:text-white">
 
     <!-- Top Announcement Bar -->
-    <div class="bg-zinc-900 text-zinc-300 text-xs py-2 px-4 border-b border-zinc-800">
+    <div class="bg-zinc-900 text-zinc-300 text-xs py-2 px-3 sm:px-4 border-b border-zinc-800">
         <div class="max-w-6xl mx-auto flex items-center justify-between">
-            <div class="flex items-center gap-2">
-                <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">PKL Project</span>
-                <span>Proyek Magang Hari Ke-1 • XI PPLG SMKN 1 Ciamis</span>
+            <div class="flex items-center gap-1.5 sm:gap-2 truncate">
+                <span class="inline-flex items-center px-1.5 sm:px-2 py-0.5 rounded text-[10px] sm:text-[11px] font-semibold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0">PKL Project</span>
+                <span class="truncate text-[11px] sm:text-xs">Proyek Magang Hari Ke-1 • XI PPLG SMKN 1 Ciamis</span>
             </div>
-            <div class="hidden sm:flex items-center gap-4 text-zinc-400">
+            <div class="hidden sm:flex items-center gap-4 text-zinc-400 shrink-0">
                 <span>Ditenagai Laravel 12 & Tailwind</span>
             </div>
         </div>
@@ -65,18 +65,18 @@
     <header class="sticky top-0 z-40 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md border-b border-zinc-200 dark:border-zinc-800 transition-colors">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
             <!-- Brand Logo -->
-            <a href="{{ route('blog.index') }}" class="group flex items-center gap-2.5">
+            <a href="{{ route('blog.index') }}" class="group flex items-center gap-2 sm:gap-2.5 shrink-0">
                 <img src="{{ asset('images/logo_techpulse.jpg') }}" alt="TechPulse Logo" 
-                     class="w-10 h-10 rounded-xl object-cover border border-zinc-200 dark:border-zinc-800 shadow-sm group-hover:scale-105 transition-transform">
+                     class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl object-cover border border-zinc-200 dark:border-zinc-800 shadow-sm group-hover:scale-105 transition-transform">
                 <div class="flex flex-col">
-                    <span class="font-extrabold text-xl tracking-tight text-zinc-900 dark:text-white leading-none">
+                    <span class="font-extrabold text-lg sm:text-xl tracking-tight text-zinc-900 dark:text-white leading-none">
                         TechPulse<span class="text-cyan-500">.</span>
                     </span>
-                    <span class="text-[10px] uppercase font-semibold text-zinc-400 tracking-wider">Engineering Blog</span>
+                    <span class="text-[9px] sm:text-[10px] uppercase font-semibold text-zinc-400 tracking-wider">Engineering Blog</span>
                 </div>
             </a>
 
-            <!-- Search Bar in Header -->
+            <!-- Search Bar in Header (Desktop) -->
             <form action="{{ route('blog.index') }}" method="GET" class="hidden md:flex items-center relative w-72">
                 <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari artikel, topik..." 
                     class="w-full text-xs rounded-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 px-3.5 py-2 pl-9 text-zinc-800 dark:text-zinc-200 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition">
@@ -86,7 +86,7 @@
             </form>
 
             <!-- Navigation Links & Auth -->
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-2 sm:gap-3">
                 <!-- Theme Toggle Button -->
                 <button type="button" id="theme-toggle" aria-label="Toggle theme"
                     class="p-2 rounded-xl text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 transition duration-300 focus:outline-none">
@@ -100,18 +100,18 @@
                     </svg>
                 </button>
 
-                <a href="{{ route('blog.index') }}" class="text-xs font-semibold text-zinc-600 dark:text-zinc-300 hover:text-indigo-600 dark:hover:text-white transition px-2 py-1">
+                <a href="{{ route('blog.index') }}" class="hidden sm:inline-block text-xs font-semibold text-zinc-600 dark:text-zinc-300 hover:text-indigo-600 dark:hover:text-white transition px-2 py-1">
                     Semua Artikel
                 </a>
 
                 @auth
-                    <a href="{{ route('admin.dashboard') }}" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-700 shadow-sm transition">
+                    <a href="{{ route('admin.dashboard') }}" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-700 shadow-sm transition">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-                        Dashboard CMS
+                        <span class="hidden sm:inline">Dashboard</span> CMS
                     </a>
                 @else
-                    <a href="{{ route('login') }}" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition">
-                        Masuk Penulis
+                    <a href="{{ route('login') }}" class="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-semibold text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition">
+                        Masuk
                     </a>
                 @endauth
             </div>

@@ -6,14 +6,14 @@
     <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8 md:py-12">
         
         <!-- Hero Section -->
-        <div class="mb-10 text-center md:text-left border-b border-zinc-200 dark:border-zinc-800 pb-10">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800/50 mb-4">
+        <div class="mb-8 sm:mb-10 text-left border-b border-zinc-200 dark:border-zinc-800 pb-8 sm:pb-10">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800/50 mb-3 sm:mb-4">
                 <span>Catatan & Riset Teknologi</span>
             </div>
-            <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-50 leading-tight">
+            <h1 class="text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-50 leading-tight">
                 Menulis Kode yang Lebih Bersih, Membangun Sistem yang Lebih Tangguh.
             </h1>
-            <p class="mt-4 text-base sm:text-lg text-zinc-600 dark:text-zinc-400 max-w-3xl leading-relaxed">
+            <p class="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-zinc-600 dark:text-zinc-400 max-w-3xl leading-relaxed">
                 Jurnal teknis yang mendokumentasikan eksplorasi framework Laravel, arsitektur database relasional, best practices clean code, dan adaptasi di industri perangkat lunak.
             </p>
         </div>
