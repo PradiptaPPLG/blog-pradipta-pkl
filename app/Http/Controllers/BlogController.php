@@ -71,8 +71,12 @@ class BlogController extends Controller
         ->where('slug', $slug)
         ->firstOrFail();
 
-        // Tambah counter pembaca (+1 view)
-        $post->increment('views_count');
+        // Tambah counter pembaca (+1 view) dengan pengecekan aman agar tidak crash di serverless readonly
+        try {
+            $post->increment('views_count');
+        } catch (\Throwable $e) {
+            // Abaikan error write di serverless hosting seperti Vercel yang read-only
+        }
 
         // Artikel terkait dalam kategori yang sama
         $relatedPosts = Post::published()
