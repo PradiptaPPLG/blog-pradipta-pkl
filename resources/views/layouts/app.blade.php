@@ -12,9 +12,21 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+        <!-- Dark Mode Init Script (Prevent Flash) -->
+        <script>
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        </script>
+
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <style>
+            * {
+                transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+            }
             body { font-family: 'Plus Jakarta Sans', sans-serif; }
         </style>
     </head>
@@ -59,5 +71,37 @@
                 </div>
             </main>
         </div>
+
+        <!-- Theme Toggle Logic Script -->
+        <script>
+            const adminThemeToggleDarkIcon = document.getElementById('admin-theme-dark-icon');
+            const adminThemeToggleLightIcon = document.getElementById('admin-theme-light-icon');
+            const adminThemeToggleBtn = document.getElementById('admin-theme-toggle');
+
+            function updateAdminToggleIcons() {
+                if (document.documentElement.classList.contains('dark')) {
+                    if (adminThemeToggleLightIcon) adminThemeToggleLightIcon.classList.remove('hidden');
+                    if (adminThemeToggleDarkIcon) adminThemeToggleDarkIcon.classList.add('hidden');
+                } else {
+                    if (adminThemeToggleDarkIcon) adminThemeToggleDarkIcon.classList.remove('hidden');
+                    if (adminThemeToggleLightIcon) adminThemeToggleLightIcon.classList.add('hidden');
+                }
+            }
+
+            updateAdminToggleIcons();
+
+            if (adminThemeToggleBtn) {
+                adminThemeToggleBtn.addEventListener('click', function() {
+                    if (document.documentElement.classList.contains('dark')) {
+                        document.documentElement.classList.remove('dark');
+                        localStorage.setItem('theme', 'light');
+                    } else {
+                        document.documentElement.classList.add('dark');
+                        localStorage.setItem('theme', 'dark');
+                    }
+                    updateAdminToggleIcons();
+                });
+            }
+        </script>
     </body>
 </html>
