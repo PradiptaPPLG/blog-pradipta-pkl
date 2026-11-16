@@ -213,7 +213,7 @@
         </div>
     </footer>
 
-    <!-- Theme Toggle Logic Script -->
+    <!-- Theme Toggle Logic Script with Pixel Matrix Wave Transition (Apex Automotive Style) -->
     <script>
         const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
         const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
@@ -231,17 +231,89 @@
 
         updateToggleIcons();
 
-        if (themeToggleBtn) {
-            themeToggleBtn.addEventListener('click', function() {
-                if (document.documentElement.classList.contains('dark')) {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('theme', 'light');
-                } else {
-                    document.documentElement.classList.add('dark');
+        function triggerPixelWaveTransition() {
+            const h = document.documentElement;
+            const isDark = h.classList.contains('dark');
+            const newTheme = isDark ? 'light' : 'dark';
+
+            let overlay = document.getElementById('pixel-transition-overlay');
+            if (!overlay) {
+                overlay = document.createElement('div');
+                overlay.id = 'pixel-transition-overlay';
+                overlay.style.position = 'fixed';
+                overlay.style.top = '0';
+                overlay.style.left = '0';
+                overlay.style.width = '100vw';
+                overlay.style.height = '100vh';
+                overlay.style.zIndex = '999999';
+                overlay.style.pointerEvents = 'none';
+                overlay.style.display = 'grid';
+                overlay.style.gridTemplateColumns = 'repeat(12, 1fr)';
+                overlay.style.gridTemplateRows = 'repeat(8, 1fr)';
+                document.body.appendChild(overlay);
+            }
+
+            overlay.style.display = 'grid';
+            overlay.innerHTML = '';
+
+            const cols = 12;
+            const rows = 8;
+            const totalTiles = cols * rows;
+            const tileColor = newTheme === 'dark' ? '#09090b' : '#ffffff';
+            const tileBorder = newTheme === 'dark' ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)';
+
+            for (let i = 0; i < totalTiles; i++) {
+                const tile = document.createElement('div');
+                tile.style.backgroundColor = tileColor;
+                tile.style.border = '1px solid ' + tileBorder;
+                tile.style.opacity = '0';
+                tile.style.transform = 'scale(0.5)';
+                tile.style.transition = 'all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+
+                const col = i % cols;
+                tile.style.transitionDelay = (col * 0.04) + 's';
+                overlay.appendChild(tile);
+            }
+
+            // Wave In
+            setTimeout(function() {
+                const tiles = overlay.children;
+                for (let i = 0; i < tiles.length; i++) {
+                    tiles[i].style.opacity = '1';
+                    tiles[i].style.transform = 'scale(1.05)';
+                }
+            }, 10);
+
+            // Ganti tema pas wave menutup layar
+            setTimeout(function() {
+                if (newTheme === 'dark') {
+                    h.classList.add('dark');
                     localStorage.setItem('theme', 'dark');
+                } else {
+                    h.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
                 }
                 updateToggleIcons();
-            });
+            }, 500);
+
+            // Wave Out
+            setTimeout(function() {
+                const tiles = overlay.children;
+                for (let i = 0; i < tiles.length; i++) {
+                    tiles[i].style.opacity = '0';
+                    tiles[i].style.transform = 'scale(0)';
+                }
+            }, 600);
+
+            // Cleanup
+            setTimeout(function() {
+                overlay.style.display = 'none';
+                overlay.innerHTML = '';
+            }, 1300);
+        }
+
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', triggerPixelWaveTransition);
         }
     </script>
 </body>
