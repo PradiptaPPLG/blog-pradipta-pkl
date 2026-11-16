@@ -2,6 +2,12 @@
     <x-slot:title>
         {{ $post->title }} - TechPulse Blog
     </x-slot:title>
+    <x-slot:metaDescription>
+        {{ $post->excerpt }}
+    </x-slot:metaDescription>
+    <x-slot:ogImage>
+        {{ $post->thumbnail_url }}
+    </x-slot:ogImage>
 
     <div class="max-w-4xl mx-auto px-4 sm:px-6 py-8 md:py-12">
         

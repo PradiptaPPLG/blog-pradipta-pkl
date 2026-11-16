@@ -6,7 +6,27 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ $title ?? 'TechPulse - Publikasi Rekayasa Perangkat Lunak & Teknologi' }}</title>
-    <meta name="description" content="Media catatan teknologi, tutorial Laravel, arsitektur database, dan pengalaman magang industri siswa SMK PPLG.">
+    <meta name="description" content="{{ $metaDescription ?? 'Jurnal teknis yang mendokumentasikan eksplorasi Laravel, arsitektur database, dan best practices. Proyek Magang Hari Ke-1 • XI PPLG SMKN 1 Ciamis.' }}">
+    <meta name="author" content="Pradipta Endra Maulana">
+
+    <!-- Open Graph / WhatsApp / Facebook Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="{{ $title ?? 'TechPulse - Publikasi Rekayasa Perangkat Lunak' }}">
+    <meta property="og:description" content="{{ $metaDescription ?? 'Jurnal teknis yang mendokumentasikan eksplorasi Laravel, arsitektur database, dan best practices. Proyek Magang Hari Ke-1 • XI PPLG SMKN 1 Ciamis.' }}">
+    <meta property="og:image" content="{{ $ogImage ?? asset('images/og-thumbnail.jpg') }}">
+    <meta property="og:image:secure_url" content="{{ $ogImage ?? asset('images/og-thumbnail.jpg') }}">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="TechPulse Blog">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ url()->current() }}">
+    <meta name="twitter:title" content="{{ $title ?? 'TechPulse - Publikasi Rekayasa Perangkat Lunak' }}">
+    <meta name="twitter:description" content="{{ $metaDescription ?? 'Jurnal teknis yang mendokumentasikan eksplorasi Laravel, arsitektur database, dan best practices.' }}">
+    <meta name="twitter:image" content="{{ $ogImage ?? asset('images/og-thumbnail.jpg') }}">
 
     <!-- Fonts: Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
