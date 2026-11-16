@@ -70,8 +70,8 @@
         @endif
 
         <!-- Article Content Body -->
-        <article class="prose prose-zinc dark:prose-invert max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-a:text-indigo-600 hover:prose-a:underline prose-img:rounded-xl text-zinc-700 dark:text-zinc-300 leading-relaxed text-base sm:text-lg mb-12">
-            {!! nl2br(e($post->body)) !!}
+        <article class="prose prose-zinc dark:prose-invert max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-zinc-900 dark:prose-headings:text-zinc-100 prose-a:text-indigo-600 hover:prose-a:underline prose-img:rounded-xl text-zinc-700 dark:text-zinc-300 leading-relaxed text-base sm:text-lg mb-12">
+            {!! Str::markdown($post->body) !!}
         </article>
 
         <!-- Tags List -->
