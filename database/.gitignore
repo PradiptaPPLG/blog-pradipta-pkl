@@ -1,1 +1,2 @@
-*.sqlite*
+# allow database.sqlite for vercel demo
+!database.sqlite
