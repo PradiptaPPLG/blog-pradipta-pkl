@@ -18,6 +18,10 @@
       "dest": "/images/$1"
     },
     {
+      "src": "/og-image.jpg",
+      "dest": "/og-image.jpg"
+    },
+    {
       "src": "/favicon.ico",
       "dest": "/favicon.ico"
     },
