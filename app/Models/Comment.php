@@ -53,4 +53,25 @@ class Comment extends Model
 
         return $this->guest_name ?: 'Pengunjung';
     }
+
+    /**
+     * Helper accessor untuk mendapatkan avatar pembuat komentar (baik member maupun guest).
+     */
+    public function getAvatarUrlAttribute(): string
+    {
+        if ($this->user && $this->user->avatar_url) {
+            return $this->user->avatar_url;
+        }
+
+        // Tentukan foto profil guest berdasarkan nama agar konsisten (pp1 - pp5)
+        $avatars = [
+            'images/pp1.jpg',
+            'images/pp3.jpg',
+            'images/pp4.jpg',
+            'images/pp5.jpg',
+        ];
+
+        $hash = crc32($this->guest_name ?? 'Guest') % count($avatars);
+        return asset($avatars[abs($hash)]);
+    }
 }
