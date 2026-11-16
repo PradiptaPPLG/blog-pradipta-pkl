@@ -8,26 +8,27 @@
       "runtime": "vercel-php@0.8.0"
     }
   },
-  "routes": [
+  "rewrites": [
     {
-      "src": "/build/(.*)",
-      "dest": "/public/build/$1"
+      "source": "/build/(.*)",
+      "destination": "/build/$1"
     },
     {
-      "src": "/images/(.*)",
-      "dest": "/public/images/$1"
+      "source": "/images/(.*)",
+      "destination": "/images/$1"
     },
     {
-      "handle": "filesystem"
+      "source": "/favicon.ico",
+      "destination": "/favicon.ico"
     },
     {
-      "src": "/(.*)",
-      "dest": "/api/index.php"
+      "source": "/((?!build|images|favicon.ico).*)",
+      "destination": "/api/index.php"
     }
   ],
   "env": {
     "APP_ENV": "production",
-    "APP_DEBUG": "true",
+    "APP_DEBUG": "false",
     "APP_KEY": "base64:yYH5R5/1/0r/+j1iYpZi6rwel0R0b9y7ppWxCn0nq3A=",
     "APP_CONFIG_CACHE": "/tmp/config.php",
     "APP_EVENTS_CACHE": "/tmp/events.php",
@@ -42,4 +43,5 @@
     "LOG_CHANNEL": "stderr"
   }
 }
+
 
