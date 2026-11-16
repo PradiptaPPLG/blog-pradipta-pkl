@@ -119,10 +119,15 @@
                 @forelse ($post->approvedComments as $comment)
                     <div class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm">
                         <div class="flex items-center justify-between mb-2">
-                            <div class="flex items-center gap-2">
-                                <span class="w-7 h-7 rounded-full bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 font-bold text-xs flex items-center justify-center">
-                                    {{ strtoupper(substr($comment->author_name, 0, 1)) }}
-                                </span>
+                            <div class="flex items-center gap-2.5">
+                                @if ($comment->user && $comment->user->avatar_url)
+                                    <img src="{{ $comment->user->avatar_url }}" alt="{{ $comment->author_name }}" 
+                                         class="w-7 h-7 rounded-full object-cover object-top border border-indigo-500/40 shrink-0">
+                                @else
+                                    <span class="w-7 h-7 rounded-full bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 font-bold text-xs flex items-center justify-center shrink-0">
+                                        {{ strtoupper(substr($comment->author_name, 0, 1)) }}
+                                    </span>
+                                @endif
                                 <span class="font-bold text-xs text-zinc-900 dark:text-zinc-100">
                                     {{ $comment->author_name }}
                                 </span>
