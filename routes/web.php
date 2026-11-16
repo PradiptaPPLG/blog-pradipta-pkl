@@ -21,6 +21,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/posts/{slug}', [BlogController::class, 'show'])->name('blog.show');
 Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
+Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
+Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 
 // ==========================================
 // 2. RUTE ADMIN / CMS (DIPROTEKSI LOGIN)

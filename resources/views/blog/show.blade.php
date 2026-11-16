@@ -117,7 +117,7 @@
             <!-- List Existing Comments -->
             <div class="space-y-4 mb-10">
                 @forelse ($post->approvedComments as $comment)
-                    <div class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm">
+                    <div id="comment-card-{{ $comment->id }}" class="group/card relative p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm transition">
                         <div class="flex items-center justify-between mb-2">
                             <div class="flex items-center gap-2.5">
                                 <img src="{{ $comment->avatar_url }}" alt="{{ $comment->author_name }}" 
@@ -135,13 +135,71 @@
                                     </span>
                                 @endif
                             </div>
-                            <time class="text-[11px] text-zinc-400">
-                                {{ $comment->created_at->diffForHumans() }}
-                            </time>
+
+                            <div class="flex items-center gap-3">
+                                <time class="text-[11px] text-zinc-400">
+                                    {{ $comment->created_at->diffForHumans() }}
+                                </time>
+
+                                <!-- Action Dropdown Menu (Titik Tiga) -->
+                                <div class="relative" x-data="{ open: false }">
+                                    <button @click="open = !open" @click.outside="open = false" type="button" 
+                                            class="p-1 rounded-lg text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition">
+                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"/>
+                                        </svg>
+                                    </button>
+
+                                    <!-- Dropdown Menu -->
+                                    <div x-show="open" x-transition.origin.top.right 
+                                         class="absolute right-0 mt-1 w-36 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-1.5 shadow-lg z-30" style="display: none;">
+                                        
+                                        <!-- Tombol Edit -->
+                                        <button type="button" onclick="openEditComment({{ $comment->id }})" @click="open = false"
+                                                class="w-full flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition">
+                                            <svg class="w-3.5 h-3.5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                                            Edit
+                                        </button>
+
+                                        <!-- Tombol Hapus -->
+                                        <form action="{{ route('comments.destroy', $comment->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus komentar ini?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" 
+                                                    class="w-full flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition">
+                                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                                                Hapus
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed pl-9">
-                            {{ $comment->comment }}
-                        </p>
+
+                        <!-- Text Tampilan Komentar Biasa -->
+                        <div id="comment-text-{{ $comment->id }}" class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed pl-9">
+                            <span id="comment-content-{{ $comment->id }}">{{ $comment->comment }}</span>
+                        </div>
+
+                        <!-- Form Edit Komentar (Inline) -->
+                        <div id="comment-edit-form-{{ $comment->id }}" class="hidden mt-3 pl-9">
+                            <form action="{{ route('comments.update', $comment->id) }}" method="POST" class="space-y-3">
+                                @csrf
+                                @method('PUT')
+                                <textarea name="comment" rows="3" required
+                                    class="w-full text-xs rounded-xl border border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800/90 p-3 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">{{ $comment->comment }}</textarea>
+                                <div class="flex items-center gap-2 justify-end">
+                                    <button type="button" onclick="cancelEditComment({{ $comment->id }})" 
+                                            class="px-3 py-1.5 rounded-lg text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition">
+                                        Batal
+                                    </button>
+                                    <button type="submit" 
+                                            class="px-3.5 py-1.5 rounded-lg text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-700 shadow-sm transition">
+                                        Simpan Perubahan
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 @empty
                     <div class="p-8 text-center rounded-2xl border border-dashed border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/40">
@@ -233,4 +291,17 @@
         @endif
 
     </div>
+
+    <!-- Script Kontrol Interaktif Edit Komentar -->
+    <script>
+        function openEditComment(id) {
+            document.getElementById('comment-text-' + id).classList.add('hidden');
+            document.getElementById('comment-edit-form-' + id).classList.remove('hidden');
+        }
+
+        function cancelEditComment(id) {
+            document.getElementById('comment-edit-form-' + id).classList.add('hidden');
+            document.getElementById('comment-text-' + id).classList.remove('hidden');
+        }
+    </script>
 </x-blog-layout>

@@ -37,4 +37,30 @@ class CommentController extends Controller
 
         return back()->with('success', 'Terima kasih! Komentar Anda berhasil diterbitkan.');
     }
+
+    /**
+     * Memperbarui isi komentar.
+     */
+    public function update(Request $request, Comment $comment): RedirectResponse
+    {
+        $validated = $request->validate([
+            'comment' => ['required', 'string', 'min:3', 'max:1000'],
+        ]);
+
+        $comment->update([
+            'comment' => $validated['comment'],
+        ]);
+
+        return back()->with('success', 'Komentar berhasil diperbarui.');
+    }
+
+    /**
+     * Menghapus komentar.
+     */
+    public function destroy(Comment $comment): RedirectResponse
+    {
+        $comment->delete();
+
+        return back()->with('success', 'Komentar berhasil dihapus.');
+    }
 }
