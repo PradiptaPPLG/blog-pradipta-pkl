@@ -15,25 +15,25 @@
 
     <!-- Open Graph / WhatsApp / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:url" content="https://blog-pradipta-pkl.vercel.app/">
     <meta property="og:site_name" content="TechPulse Blog">
-    <meta property="og:title" content="{{ $title ?? 'TechPulse - Publikasi Rekayasa Perangkat Lunak' }}">
-    <meta property="og:description" content="{{ $metaDescription ?? 'Jurnal teknis yang mendokumentasikan eksplorasi Laravel, arsitektur database, dan best practices. Proyek Magang Hari Ke-1 • XI PPLG SMKN 1 Ciamis.' }}">
-    <meta property="og:image" content="{{ $ogImage ?? 'https://blog-pradipta-pkl.vercel.app/og-image.jpg' }}">
-    <meta property="og:image:url" content="{{ $ogImage ?? 'https://blog-pradipta-pkl.vercel.app/og-image.jpg' }}">
-    <meta property="og:image:secure_url" content="{{ $ogImage ?? 'https://blog-pradipta-pkl.vercel.app/og-image.jpg' }}">
+    <meta property="og:title" content="TechPulse - Publikasi Rekayasa Perangkat Lunak">
+    <meta property="og:description" content="Jurnal teknis yang mendokumentasikan eksplorasi Laravel, arsitektur database, dan best practices. Proyek Magang Hari Ke-1 • XI PPLG SMKN 1 Ciamis.">
+    <meta property="og:image" content="https://blog-pradipta-pkl.vercel.app/images/og-thumbnail.jpg">
+    <meta property="og:image:url" content="https://blog-pradipta-pkl.vercel.app/images/og-thumbnail.jpg">
+    <meta property="og:image:secure_url" content="https://blog-pradipta-pkl.vercel.app/images/og-thumbnail.jpg">
     <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="TechPulse Engineering Blog">
-    <link rel="image_src" href="{{ $ogImage ?? 'https://blog-pradipta-pkl.vercel.app/og-image.jpg' }}">
+    <link rel="image_src" href="https://blog-pradipta-pkl.vercel.app/images/og-thumbnail.jpg">
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="{{ url()->current() }}">
-    <meta name="twitter:title" content="{{ $title ?? 'TechPulse - Publikasi Rekayasa Perangkat Lunak' }}">
-    <meta name="twitter:description" content="{{ $metaDescription ?? 'Jurnal teknis yang mendokumentasikan eksplorasi Laravel, arsitektur database, dan best practices.' }}">
-    <meta name="twitter:image" content="{{ $ogImage ?? 'https://blog-pradipta-pkl.vercel.app/og-image.jpg' }}">
+    <meta name="twitter:url" content="https://blog-pradipta-pkl.vercel.app/">
+    <meta name="twitter:title" content="TechPulse - Publikasi Rekayasa Perangkat Lunak">
+    <meta name="twitter:description" content="Jurnal teknis yang mendokumentasikan eksplorasi Laravel, arsitektur database, dan best practices.">
+    <meta name="twitter:image" content="https://blog-pradipta-pkl.vercel.app/images/og-thumbnail.jpg">
 
     <!-- Fonts: Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
