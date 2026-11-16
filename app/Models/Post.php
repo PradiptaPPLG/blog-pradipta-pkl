@@ -126,7 +126,13 @@ class Post extends Model
      */
     public function getThumbnailUrlAttribute(): string
     {
-        if ($this->thumbnail && file_exists(public_path('storage/' . $this->thumbnail))) {
+        if ($this->thumbnail) {
+            if (str_starts_with($this->thumbnail, 'images/') || str_starts_with($this->thumbnail, 'http')) {
+                return asset($this->thumbnail);
+            }
+            if (file_exists(public_path('storage/' . $this->thumbnail))) {
+                return asset('storage/' . $this->thumbnail);
+            }
             return asset('storage/' . $this->thumbnail);
         }
 
