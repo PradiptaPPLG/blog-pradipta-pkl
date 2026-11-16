@@ -54,12 +54,11 @@
         <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
             <!-- Brand Logo -->
             <a href="{{ route('blog.index') }}" class="group flex items-center gap-2.5">
-                <span class="w-9 h-9 rounded-xl bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 flex items-center justify-center font-extrabold text-base tracking-tighter group-hover:scale-105 transition-transform shadow-sm">
-                    TP
-                </span>
+                <img src="{{ asset('images/logo_techpulse.jpg') }}" alt="TechPulse Logo" 
+                     class="w-10 h-10 rounded-xl object-cover border border-zinc-200 dark:border-zinc-800 shadow-sm group-hover:scale-105 transition-transform">
                 <div class="flex flex-col">
                     <span class="font-extrabold text-xl tracking-tight text-zinc-900 dark:text-white leading-none">
-                        TechPulse<span class="text-indigo-600">.</span>
+                        TechPulse<span class="text-cyan-500">.</span>
                     </span>
                     <span class="text-[10px] uppercase font-semibold text-zinc-400 tracking-wider">Engineering Blog</span>
                 </div>
@@ -117,9 +116,10 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
                 <!-- Col 1: Brand -->
                 <div class="md:col-span-2">
-                    <div class="flex items-center gap-2 mb-3">
-                        <span class="w-7 h-7 rounded-lg bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 flex items-center justify-center font-bold text-xs">TP</span>
-                        <span class="font-extrabold text-lg tracking-tight">TechPulse<span class="text-indigo-600">.</span></span>
+                    <div class="flex items-center gap-2.5 mb-3">
+                        <img src="{{ asset('images/logo_techpulse.jpg') }}" alt="TechPulse Logo" 
+                             class="w-8 h-8 rounded-lg object-cover border border-zinc-200 dark:border-zinc-800 shadow-sm">
+                        <span class="font-extrabold text-lg tracking-tight">TechPulse<span class="text-cyan-500">.</span></span>
                     </div>
                     <p class="text-xs text-zinc-500 leading-relaxed max-w-md">
                         Blog publikasi teknis yang didedikasikan untuk berbagi pengetahuan tentang rekayasa perangkat lunak, eksplorasi framework Laravel, arsitektur basis data, dan dokumentasi tugas magang industri.

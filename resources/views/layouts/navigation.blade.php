@@ -5,9 +5,10 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-2">
-                        <span class="w-8 h-8 rounded-lg bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 flex items-center justify-center font-bold text-sm">TP</span>
-                        <span class="font-bold text-lg text-zinc-900 dark:text-zinc-100 tracking-tight">TechPulse<span class="text-indigo-600">.</span> <span class="text-xs px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 font-medium">CMS</span></span>
+                    <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-2.5">
+                        <img src="{{ asset('images/logo_techpulse.jpg') }}" alt="TechPulse Logo" 
+                             class="w-9 h-9 rounded-xl object-cover border border-zinc-200 dark:border-zinc-700 shadow-sm">
+                        <span class="font-bold text-lg text-zinc-900 dark:text-zinc-100 tracking-tight">TechPulse<span class="text-cyan-500">.</span> <span class="text-xs px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 font-medium">CMS</span></span>
                     </a>
                 </div>
 
