@@ -39,9 +39,8 @@
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-zinc-600 dark:text-zinc-300 bg-white dark:bg-zinc-900 hover:text-zinc-900 dark:hover:text-white focus:outline-none transition">
-                            <span class="inline-block w-6 h-6 rounded-full bg-zinc-200 dark:bg-zinc-700 text-xs font-semibold text-zinc-700 dark:text-zinc-300 leading-6 text-center me-2">
-                                {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
-                            </span>
+                            <img src="{{ Auth::user()->avatar_url }}" alt="{{ Auth::user()->name }}" 
+                                 class="w-6 h-6 rounded-full object-cover object-top me-2 border border-zinc-300 dark:border-zinc-700">
                             <div>{{ Auth::user()->name }}</div>
 
                             <div class="ms-1">

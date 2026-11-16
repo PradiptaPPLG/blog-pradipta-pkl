@@ -39,9 +39,8 @@
             <!-- Author & Metadata Bar -->
             <div class="mt-6 pt-6 border-t border-zinc-200 dark:border-zinc-800 flex items-center justify-between">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-zinc-800 text-white flex items-center justify-center font-bold text-sm shadow-sm">
-                        {{ strtoupper(substr($post->user->name, 0, 1)) }}
-                    </div>
+                    <img src="{{ $post->user->avatar_url }}" alt="{{ $post->user->name }}" 
+                         class="w-11 h-11 rounded-2xl object-cover object-top border-2 border-indigo-500 shadow-sm">
                     <div>
                         <div class="font-bold text-sm text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
                             <span>{{ $post->user->name }}</span>
@@ -90,13 +89,12 @@
 
         <!-- Author Profile Box -->
         <div class="my-10 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-100/70 dark:bg-zinc-900/60 flex items-start gap-4">
-            <div class="w-12 h-12 rounded-xl bg-zinc-900 text-white flex items-center justify-center font-bold text-lg shrink-0">
-                {{ strtoupper(substr($post->user->name, 0, 1)) }}
-            </div>
+            <img src="{{ $post->user->avatar_url }}" alt="{{ $post->user->name }}" 
+                 class="w-14 h-14 rounded-2xl object-cover object-top border-2 border-indigo-500 shrink-0 shadow-md">
             <div>
                 <h3 class="font-bold text-sm text-zinc-900 dark:text-zinc-100">Ditulis oleh {{ $post->user->name }}</h3>
                 <p class="mt-1 text-xs text-zinc-500 leading-relaxed">
-                    Kontributor di TechPulse. Menulis artikel seputar praktik pengembangan web, modularisasi kode di framework Laravel, serta panduan praktis dunia industri.
+                    {{ $post->user->role === 'admin' ? 'Pengembang utama platform TechPulse. Siswa XI PPLG SMKN 1 Ciamis yang mendokumentasikan eksplorasi arsitektur sistem dan pengalaman magang industri.' : 'Kontributor teknis di TechPulse. Menulis artikel seputar praktik pengembangan web dan arsitektur backend.' }}
                 </p>
             </div>
         </div>

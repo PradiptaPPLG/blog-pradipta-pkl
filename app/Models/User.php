@@ -72,4 +72,19 @@ class User extends Authenticatable
     {
         return $this->role === 'admin';
     }
+
+    /**
+     * Helper accessor untuk URL avatar profil.
+     */
+    public function getAvatarUrlAttribute(): string
+    {
+        if ($this->avatar) {
+            if (str_starts_with($this->avatar, 'images/') || str_starts_with($this->avatar, 'http')) {
+                return asset($this->avatar);
+            }
+            return asset('storage/' . $this->avatar);
+        }
+
+        return asset('images/ProfilePortifolioProfessional.jpg');
+    }
 }

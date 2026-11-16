@@ -9,7 +9,6 @@ use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,19 +17,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // 1. Buat User Admin & Author
+        // 1. Buat User Admin (Pradipta) & Rekan Penulis (Farhan)
         $admin = User::create([
             'name' => 'Pradipta Endra Maulana',
             'email' => 'admin@techpulse.id',
             'password' => Hash::make('password'),
             'role' => 'admin',
+            'avatar' => 'images/ProfilePortifolioProfessional.jpg',
         ]);
 
         $author = User::create([
-            'name' => 'Sarah Nurhaliza',
-            'email' => 'sarah@techpulse.id',
+            'name' => 'Farhan Ramadhan',
+            'email' => 'farhan@techpulse.id',
             'password' => Hash::make('password'),
             'role' => 'author',
+            'avatar' => 'images/pp2.jpg',
         ]);
 
         // 2. Buat Kategori
@@ -165,7 +166,7 @@ Ketika estetika visual berpadu dengan performa halaman yang cepat, pengguna akan
                 'title' => 'Konvensi Git Commit yang Rapi Agar Disukai Tim Tech Lead',
                 'slug' => 'konvensi-git-commit-rapi-disukai-tech-lead',
                 'thumbnail' => null,
-                'status' => 'draft', // Sengaja dibuat draft untuk testing fitur status admin
+                'status' => 'draft',
                 'views_count' => 0,
                 'published_at' => null,
                 'tags' => [$tagCleanCode->id, $tagPKL->id],
@@ -180,21 +181,21 @@ Ketika estetika visual berpadu dengan performa halaman yang cepat, pengguna akan
             $post = Post::create($data);
             $post->tags()->sync($tags);
 
-            // Tambahkan komentar dummy realistis untuk artikel yang sudah published
+            // Tambahkan komentar diskusi
             if ($post->status === 'published') {
                 Comment::create([
                     'post_id' => $post->id,
                     'user_id' => $author->id,
-                    'comment' => 'Penjelasan yang sangat padat dan relevan untuk teman-teman yang baru mulai magang industri. Keren!',
+                    'comment' => 'Penjelasan yang sangat padat dan relevan untuk teman-teman yang baru mulai magang industri. Keren, Dipta!',
                     'is_approved' => true,
                 ]);
 
                 Comment::create([
                     'post_id' => $post->id,
                     'user_id' => null,
-                    'guest_name' => 'Budi Santoso',
-                    'guest_email' => 'budi@sekolah.id',
-                    'comment' => 'Terima kasih tipsnya! Sangat membantu untuk persiapan saya yang minggu depan juga mau mulai PKL.',
+                    'guest_name' => 'Rian Ardiansyah',
+                    'guest_email' => 'rian.ardiansyah@smkn1ciamis.sch.id',
+                    'comment' => 'Sangat membantu penjelasannya! Ini materi yang pas banget buat persiapan anak PPLG sebelum terjun magang.',
                     'is_approved' => true,
                 ]);
             }
